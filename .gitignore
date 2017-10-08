@@ -8,6 +8,7 @@
 # VSCode
 .vscode/
 tsconfig.json
+jsconfig.json
 
 # Xcode
 #
@@ -42,12 +43,9 @@ npm-debug.log
 yarn-debug.log
 yarn-error.log
 
-# VSCode
-#
-jsconfig.json
-
 # BUCK
 buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+config.bat

@@ -2,7 +2,11 @@
 
 import React, { PureComponent } from 'react';
 import { StyleSheet } from 'react-native';
-import { TabViewAnimated, TabBar } from 'react-native-tab-view';
+import {
+  TabViewAnimated,
+  TabBar,
+  TabViewPagerExperimental,
+} from 'react-native-tab-view';
 import SimplePage from './SimplePage';
 
 import type { NavigationState } from 'react-native-tab-view/types';
@@ -14,8 +18,8 @@ type Route = {
 
 type State = NavigationState<Route>;
 
-export default class TopBarTextExample extends PureComponent<*, State> {
-  static title = 'Scrollable top bar';
+export default class NativeDriverExample extends PureComponent<*, State> {
+  static title = 'With native animations';
   static appbarElevation = 0;
 
   state = {
@@ -24,7 +28,6 @@ export default class TopBarTextExample extends PureComponent<*, State> {
       { key: '1', title: 'First' },
       { key: '2', title: 'Second' },
       { key: '3', title: 'Third' },
-      { key: '4', title: 'Fourth' },
     ],
   };
 
@@ -38,7 +41,6 @@ export default class TopBarTextExample extends PureComponent<*, State> {
     return (
       <TabBar
         {...props}
-        scrollEnabled
         indicatorStyle={styles.indicator}
         style={styles.tabbar}
         tabStyle={styles.tab}
@@ -82,6 +84,8 @@ export default class TopBarTextExample extends PureComponent<*, State> {
     }
   };
 
+  _renderPager = props => <TabViewPagerExperimental {...props} />;
+
   render() {
     return (
       <TabViewAnimated
@@ -89,7 +93,9 @@ export default class TopBarTextExample extends PureComponent<*, State> {
         navigationState={this.state}
         renderScene={this._renderScene}
         renderHeader={this._renderHeader}
+        renderPager={this._renderPager}
         onIndexChange={this._handleIndexChange}
+        useNativeDriver
       />
     );
   }
